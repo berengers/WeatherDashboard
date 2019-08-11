@@ -1,36 +1,50 @@
-const { db, User, AuthToken, Dashboard, Column, Item } = require('./models/db')
+const { db, User, UserParams, AuthToken, City } = require('./models/db')
 
-users = [
+const users = [
   {"email": "tom@gmail.com", "password": "tom_pass"},
   {"email": "pierre@gmail.com", "password": "pierre_pass"}
 ]
 
-authTokens = [
+const userParams = [
+  {
+    "userId": 1,
+    "lang": "fr",
+    "unit": "metric"
+  },
+  {
+    "userId": 2,
+    "lang": "en",
+    "unit": "imperial"
+  }
+]
+
+const authTokens = [
   {"token": "tom_token", "userId": 1}
 ]
 
-dashboards = [
+const cities = [
   {
     "userId": 1,
     "name": "Maison",
-    "cityId": 6454034,
-    "cityName": "Montpellier"
+    "openWeatherId": 6454034,
+    "openWeatherName": "Montpellier"
   },
   {
     "userId": 1,
     "name": "Girlfriend",
-    "cityId": 2147714,
-    "cityName": "Sydney"
+    "openWeatherId": 2147714,
+    "openWeatherName": "Sydney"
   },
   {
     "userId": 2,
-    "cityId": 1609350,
-    "cityName": "Bangkok"
+    "openWeatherId": 1609350,
+    "openWeatherName": "Bangkok"
   },
 ]
 
 db.sync({ force: false })
 .then(() => { Promise.all(users.map(user => User.create(user))) })
+.then(() => { Promise.all(userParams.map(params => UserParams.create(params))) })
 .then(() => { Promise.all(authTokens.map(authToken => AuthToken.create(authToken))) })
-.then(() => { Promise.all(dashboards.map(dashboard => Dashboard.create(dashboard))) })
+.then(() => { Promise.all(cities.map(city => City.create(city))) })
 .then(() => { console.log('fixtures inserted <------------------') })

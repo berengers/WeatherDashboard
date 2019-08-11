@@ -1,0 +1,41 @@
+.detail-view-375b34ba {
+  background-color: #00000021;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.5rem;
+  padding: 3%;
+
+  .params {
+    flex-grow: 1;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.1rem;
+
+    .main-infos {
+      display: flex;
+      flex-direction: column;
+      i {
+        font-size: 5em;
+      }
+      .description {
+        margin-top: .6em;
+        font-size: 2em;
+        text-transform: capitalize;
+      }
+      .city {
+        font-size: 1.4em;
+      }
+      .temp {
+        margin-top: .2em;
+        font-size: 4em;
+      }
+    }
+
+    .additional-infos {
+      & > * + * {
+        margin-top: 2em;
+      }
+    }
+  }
+}

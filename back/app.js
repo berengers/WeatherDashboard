@@ -21,4 +21,6 @@ app.listen(config.PORT, () => {
 })
 
 require('./api/auth')(app, '/api')
-require('./api/dashboard')(app, '/api/dashboards')
+require('./api/user')(app, '/api/user')
+require('./api/userParams')(app, '/api/userparams')
+require('./api/city')(app, '/api/city')

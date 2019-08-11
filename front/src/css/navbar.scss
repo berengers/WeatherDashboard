@@ -1,0 +1,10 @@
+.navbar-77c7146e {
+  padding: 1rem;
+
+  .city-list {
+    margin-top: 1.5rem;
+    & > * + * {
+      margin-top: 1rem;
+    }
+  }
+}

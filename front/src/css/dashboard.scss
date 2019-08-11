@@ -1,0 +1,28 @@
+.dashboard-10a9f3ca {
+  background: center / cover no-repeat url('https://picsum.photos/id/10/1000/800');
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  .navbar {
+    background: #38393a8c;
+    width: 320px;
+    max-width: 100%;
+
+    @media screen and (max-width: 850px) {
+      position: fixed;
+      height: 100%;
+      width: 100%;
+      background: #38393af2;
+      padding: 0 .1rem;
+      box-sizing: border-box;
+      transition: all .8s ease;
+      left: -100%;
+      &.display {
+        left: 0;
+      }
+    }
+  }
+  .details {
+    flex-grow: 1;
+  }
+}
