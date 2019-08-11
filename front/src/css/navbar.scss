@@ -1,5 +1,25 @@
 .navbar-77c7146e {
   padding: 1rem;
+  height: 100%;
+  overflow: auto;
+
+  .params {
+    fill: rgba(255, 255, 255, 0.75);
+    position: absolute;
+    right: 10px;
+    top: 6px;
+    z-index: 100;
+    cursor: pointer;
+    & > * + * {
+      margin-left: 20px;
+    }
+    & > *:hover {
+      fill: rgba(255, 255, 255, 1)
+    }
+    @media screen and (max-width: $medium-size) {
+      right: 50px;
+    }
+  }
 
   .city-list {
     margin-top: 1.5rem;

@@ -1,25 +1,31 @@
 const { logged } = require('./utils')
-const { User, UserParams } = require('../models/db')
+const { User, UserParams, City } = require('../models/db')
 
 
-// function getUser(req, res) {
-//   User.findOne({
-//     where: { id: req.user.id },
-//     include: [{ model: UserParams }],
-//   })
-//     .then(user => {
-//       if (user)
-//         res.json(user)
-//       else {
-//         res.statusCode = 404
-//         res.json()
-//       }
-//     })
-//     .catch(error => {
-//       res.statusCode = 404
-//       res.json(error)
-//     })
-// }
+function getUser(req, res) {
+  User.findOne({
+    where: { id: req.user.id },
+    include: [{ model: UserParams }, { model: City }],
+  })
+    .then(user => {
+      if (user){
+        const returnUser = {
+          email: user.email,
+          userParam: user.userParam,
+          cities: user.cities
+        }
+        res.json(returnUser)
+      }
+      else {
+        res.statusCode = 404
+        res.json()
+      }
+    })
+    .catch(error => {
+      res.statusCode = 404
+      res.json(error)
+    })
+}
 
 function newUser(req, res) {
   const { email, password } = req.body
@@ -67,7 +73,7 @@ function updateUser(req, res) {
 
 
 module.exports = (app, prefix) => {
-  // app.get(prefix, logged(getUser))
+  app.get(prefix, logged(getUser))
   app.post(prefix, logged(newUser))
   app.delete(prefix, logged(deleteUser))
   app.put(prefix, logged(updateUser))

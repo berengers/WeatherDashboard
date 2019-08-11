@@ -1,4 +1,14 @@
 ////////////////////////
+// VAR
+////////////////////////
+
+$primary-color: rgb(56, 57, 58);
+// $secondary-color: #dfe1e6;
+$medium-size: 950px;
+
+
+
+////////////////////////
 // ---- INIT
 ////////////////////////
 * {
@@ -18,12 +28,12 @@ input:not([type=file]), textarea {
   color: #172b4d;
   border-radius: 3px;
   padding: 8px 12px;
-  box-shadow: inset 0 0 0 2px #0079bf;
   border: 0;
 }
 
 h1, h2, h3, h4, h5, h6 {
   margin: 1rem 0;
+  font-weight: normal;
 }
 h1 { font-size: 1.8rem; }
 h2 { font-size: 1.6rem; }
@@ -34,6 +44,13 @@ h4 { font-size: 1.2rem; }
 // ROOT SETTINGS
 ////////////////////////
 
+html {
+  font-size: 100%;
+  @media screen and (max-width: $medium-size) {
+    font-size: 80%;
+  }
+}
+
 body {
   margin: 0;
   font-size: 15px;
@@ -41,13 +58,22 @@ body {
   color: white;
 }
 
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+  opacity: .8;
+}
 
-////////////////////////
-// VAR
-////////////////////////
-
-$primary-color: #0178bf;
-$secondary-color: #dfe1e6;
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 3px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: lighten($primary-color, 25%); 
+  border-radius: 5px;
+}
 
 
 ////////////////////////
@@ -65,19 +91,15 @@ $secondary-color: #dfe1e6;
   display: inline-block;
   border-radius: 3px;
   border: 0;
-  background-color: $primary-color;
+  background-color: black;
   padding: 3px 8px;
   margin: 6px 8px 0 0;
+  font-size: 1.2em;
+  font-weight: 500;
   color: white;
+  cursor: pointer;
   &:hover {
-    background-color: lighten($primary-color, 8%);
-  }
-}
-
-.button-valid {
-  background-color: #5aac44;
-  &:hover {
-    background-color: lighten(#5aac44, 8%);
+    background-color: lighten(black, 15%);
   }
 }
 
@@ -97,8 +119,10 @@ $secondary-color: #dfe1e6;
 // IMPORT
 ////////////////////////
 
+@import "login";
 @import "dashboard";
 @import "navbar";
+@import "searchCity";
 @import "widgetCity";
 @import "detailView";
 @import "additionalInfo";

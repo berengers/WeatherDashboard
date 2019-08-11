@@ -3,26 +3,64 @@
   display: flex;
   width: 100vw;
   height: 100vh;
+  overflow: auto;
   .navbar {
-    background: #38393a8c;
+    background-color: rgba($primary-color, 0.55);
     width: 320px;
-    max-width: 100%;
+    // max-width: 100%;
+    // overflow: auto;
+    position: relative;
 
-    @media screen and (max-width: 850px) {
+    .toggle-menu {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: 0;
+      transform: translateX(100%);
+      background-color: rgba($primary-color, 0.55);
+      padding: .3em .5em;
+      fill: rgba(255, 255, 255, 0.67);
+      z-index: 100;
+      transition: transform .5s ease;
+      transition-delay: .3s;
+      cursor: pointer;
+      &:hover {
+        fill: rgba(255, 255, 255, 0.9);
+      background-color: rgba($primary-color, 0.75);
+
+      }
+    }
+
+    @media screen and (max-width: $medium-size) {
       position: fixed;
       height: 100%;
-      width: 100%;
-      background: #38393af2;
+      max-width: 100%;
+      background: rgba($primary-color, .95);
       padding: 0 .1rem;
       box-sizing: border-box;
       transition: all .8s ease;
-      left: -100%;
+      transform: translateX(-100%);
+      z-index: 1;
+      .toggle-menu {
+        display: block;
+      }
       &.display {
-        left: 0;
+        transform: translateX(0%);
+        .toggle-menu {
+          transform: translateX(0%);
+        }
       }
     }
   }
   .details {
     flex-grow: 1;
+    
+    .loading {
+      text-align: center;
+      top: 20vh;
+      position: relative;
+      font-size: 2rem;
+      font-weight: 500;
+    }
   }
 }

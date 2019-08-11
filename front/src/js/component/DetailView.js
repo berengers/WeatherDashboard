@@ -1,13 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { temperature } from '../utils'
 import AdditionalInfo from '../component/AddtionalInfo'
-import { userParams } from '../store/reducer/userParams';
 
-const DetailView = ({ userParams, city }) => {
-  const { name, main, wind } = city
-  const weather = city.weather[0]
+const DetailView = ({ userParams, city, cities }) => {
+  const cityFromGroup = cities.find(el => el.id === city.id)
+  const { name, main } = cityFromGroup
+  const weather = cityFromGroup.weather[0]
 
   return (
     <div className="detail-view-375b34ba">
@@ -42,6 +41,6 @@ const DetailView = ({ userParams, city }) => {
   )
 }
 
-const mapStateToProps = ({ userParams, currentCity }) => ({ userParams, city: currentCity })
+const mapStateToProps = ({ userParams, detailsCity, cities }) => ({ userParams, city: detailsCity, cities })
 
 export default connect(mapStateToProps)(DetailView)

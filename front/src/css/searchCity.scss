@@ -1,0 +1,31 @@
+.search-city-6b7835f3 {
+  position: relative;
+
+  .label {
+    margin-bottom: .5rem;
+  }
+
+  input {
+    width: 100%;
+    position: relative;
+    z-index: 10;
+  }
+
+  .auto-complete {
+    position: absolute;
+    width: 100%;
+    padding-top: 3px;
+    top: calc(100% - 3px);
+    background: #f1f1f1;
+    color: #5a5a5a;
+    z-index: 1;
+    & > * {
+      padding: .2rem;
+      border-bottom: 1px solid #cecece;
+      cursor: pointer;
+      &:hover {
+        background-color: #e0dddd;
+      }
+    }
+  }
+}

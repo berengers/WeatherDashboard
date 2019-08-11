@@ -1,4 +1,5 @@
-const { db, User, UserParams, AuthToken, City } = require('./models/db')
+const { db, User, UserParams, AuthToken, City, OpenWeatherCity } = require('./models/db')
+const fs = require('fs')
 
 const users = [
   {"email": "tom@gmail.com", "password": "tom_pass"},
@@ -26,25 +27,37 @@ const cities = [
   {
     "userId": 1,
     "name": "Maison",
-    "openWeatherId": 6454034,
-    "openWeatherName": "Montpellier"
+    "openWeatherCityId": 707860,
   },
   {
     "userId": 1,
     "name": "Girlfriend",
-    "openWeatherId": 2147714,
-    "openWeatherName": "Sydney"
+    "openWeatherCityId": 519188,
   },
   {
     "userId": 2,
-    "openWeatherId": 1609350,
-    "openWeatherName": "Bangkok"
+    "openWeatherCityId": 1283378,
   },
 ]
+
+const cityFile = fs.readFileSync("static/city.list.json")
+const cityList = JSON.parse(cityFile)
+
+const mapCityList = cityList.map((city, index) => {
+  return {
+    id: city.id,
+    name: city.name,
+    country: city.country,
+    coordLon: city.coord.lon,
+    coordLat: city.coord.lat
+  }
+})
+
 
 db.sync({ force: false })
 .then(() => { Promise.all(users.map(user => User.create(user))) })
 .then(() => { Promise.all(userParams.map(params => UserParams.create(params))) })
 .then(() => { Promise.all(authTokens.map(authToken => AuthToken.create(authToken))) })
+.then(() => { Promise.all(mapCityList.map((city) => {OpenWeatherCity.create(city)})) }) // Have to up max old space size size with > "node --max-old-space-size=5000 ./fixtures.js"
 .then(() => { Promise.all(cities.map(city => City.create(city))) })
 .then(() => { console.log('fixtures inserted <------------------') })

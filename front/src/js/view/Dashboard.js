@@ -9,25 +9,31 @@ class Dashboard extends React.Component {
 
   constructor(props) {
     super(props)
+    this.state = { visibilityMenu: false }
   }
 
   componentDidMount() {
-    const { dispatch } = this.props
-    
-    dispatch(getUserParams())
+    this.props.dispatch(getUserParams())
+  }
+
+  displayMenu = () => {
+    this.setState({ visibilityMenu: !this.state.visibilityMenu })
   }
 
   render () {
-    const { currentCity } = this.props
+    const { detailsCity, cities } = this.props
+    const { visibilityMenu } = this.state
     
     return (
       <div className="dashboard-10a9f3ca">
-        <div className="navbar">
-          <Navbar />
+        <div className={"navbar " + (visibilityMenu ? 'display' : '')}>
+          <Navbar displayMenu={this.displayMenu}/>
         </div>
         <div className="details">
-          {currentCity.loaded &&
+          {detailsCity.loaded && cities.length > 0 ?
             <DetailView />
+            :
+            <div className="loading">Loading...</div>
           }
         </div>
       </div>
@@ -35,6 +41,6 @@ class Dashboard extends React.Component {
   }
 }
 
-const mapStateToProps = ({ currentCity }) => ({ currentCity })
+const mapStateToProps = ({ detailsCity, cities }) => ({ detailsCity, cities })
 
 export default connect(mapStateToProps)(Dashboard)

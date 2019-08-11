@@ -7,10 +7,11 @@ const WidgetCity = ({ index, userParams, cities }) => {
   const city = cities[index]
   const { name, main } = city
   const weather = city.weather[0]
+  const userCity = userParams.cities[index]
 
   return (
     <div className="widget-city-759bdd23">
-      <div className="city-name">{name}</div>
+      <div className="city-name">{userCity.name ? userCity.name : name}</div>
       <div className="infos">
         <span className="temp">{main.temp.toFixed(1)}{userParams.displayUnit}</span>
         <i className={"wi wi-owm-" + weather.id}></i>

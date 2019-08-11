@@ -2,11 +2,13 @@ import { combineReducers } from 'redux'
 import { connectRouter } from 'connected-react-router'
 
 import { userParams } from './userParams'
-import { currentCity, cities } from './city'
+import { detailsCity, cities } from './city'
+import { searchedCities } from './searchCity'
 
 export default (history) => combineReducers({
   router: connectRouter(history),
   userParams,
-  currentCity,
-  cities
+  detailsCity,
+  cities,
+  searchedCities
 })

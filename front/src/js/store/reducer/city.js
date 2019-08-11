@@ -1,13 +1,13 @@
-import { RECEIVE_CITY, RECEIVE_CITIES } from '../const'
+import { RECEIVE_DETAILS_CITY, RECEIVE_CITIES, ADD_CITY_GROUP } from '../const'
 
 const defaultCity = {
   loaded: false,
   id: null
 }
 
-export function currentCity (state=defaultCity, action) {
+export function detailsCity (state=defaultCity, action) {
   switch (action.type) {
-    case RECEIVE_CITY:
+    case RECEIVE_DETAILS_CITY:
       return {
         loaded: true,
         ...action.payload.city
@@ -21,6 +21,8 @@ export function cities (state=[], action) {
   switch (action.type) {
     case RECEIVE_CITIES:
       return action.payload.cities
+    case ADD_CITY_GROUP:
+      return [...state, action.payload.city.list[0]]
     default:
       return state
   }

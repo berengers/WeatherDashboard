@@ -8,7 +8,8 @@ function login(req, res) {
     } else if (user.password != req.body.password) {
       res.sendStatus(401)
     } else {
-      AuthToken.create({token: uuidv4(), userId: user.id}).then(authToken => res.json(authToken))
+      AuthToken.create({token: uuidv4(), userId: user.id})
+        .then(authToken => res.json({ token: authToken.token }))
     }
   })
 }

@@ -31,9 +31,9 @@ function getCity(req, res) {
 }
 
 function newCity(req, res) {
-  const { openWeatherId, openWeatherName } = req.body
+  const { openWeatherCityId } = req.body
 
-  City.create({ openWeatherId, openWeatherName, userId: req.user.id })
+  City.create({ "openWeatherCityId": openWeatherCityId, userId: req.user.id })
     .then(city => {
       res.json(city)
     })

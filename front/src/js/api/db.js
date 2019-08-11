@@ -31,7 +31,7 @@ class DB {
     
     if (status === 401 || status === 403) {
       this._removeToken()
-      // router.replace('/login')
+      // TODO redirect to login
       console.log('authorization error ---->', error)
     } else {
       console.log('error ---->', error)
@@ -55,11 +55,12 @@ class DB {
       {
         email: email,
         password: password
-      },
-      {
-        headers: this._headers()
       }
     )
+    .then(({ data }) => {
+      this._setToken(data.token)
+      return data.token
+    })
   }
   logout() {
     return axios.delete(
@@ -75,7 +76,36 @@ class DB {
 
   getUserParams() {
     return axios.get(
-      this.url + '/userparams',
+      this.url + '/user',
+      {
+        headers: this._headers()
+      }
+    )
+    .catch(this._status)
+  }
+
+
+  // ------------ CITY -----------------
+
+  addCity(id) {
+    return axios.post(
+      this.url + '/city',
+      {
+        openWeatherCityId: id
+      },
+      {
+        headers: this._headers(),
+      }
+    )
+    .catch(this._status)
+  }
+
+
+  // ------------ OPEN WEATHER CITY -----------------
+
+  getOpenWeatherCities(text, limit) {
+    return axios.get(
+      this.url + `/owcities?searchText=${text}&limit=${limit}`,
       {
         headers: this._headers()
       }

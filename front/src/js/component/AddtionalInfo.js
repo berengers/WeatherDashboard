@@ -46,6 +46,6 @@ const AddtionalInfo = ({ type, userParams, city }) => {
   )
 }
 
-const mapStateToProps = ({ userParams, currentCity }) => ({ userParams, city: currentCity })
+const mapStateToProps = ({ userParams, detailsCity }) => ({ userParams, city: detailsCity })
 
 export default connect(mapStateToProps)(AddtionalInfo)

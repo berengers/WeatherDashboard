@@ -27,12 +27,27 @@ class weather {
     return `${this.url}${type}?APPID=${this.apiKey}&lang=${lang}&units=${unit}`
   }
 
+
+   // ------------ DETAIL CITY -----------------
+
+   getDetailsCity(cityId, params) {
+    const { lang, unit } = params
+    return axios.get(
+      this._getURL('weather', lang, unit) + `&id=${cityId}`,
+      {
+        headers: this._headers()
+      }
+    )
+    .catch(this._status)
+  }
+
+
   // ------------ CITY -----------------
 
   getCity(cityId, params) {
     const { lang, unit } = params
     return axios.get(
-      this._getURL('weather', lang, unit) + `&id=${cityId}`,
+      this._getURL('group', lang, unit) + `&id=${cityId}`,
       {
         headers: this._headers()
       }

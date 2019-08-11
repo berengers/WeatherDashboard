@@ -1,15 +1,16 @@
 .detail-view-375b34ba {
   background-color: #00000021;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   font-size: 1.5rem;
-  padding: 3%;
+  padding: 55px 3% 3% 3%;
 
   .params {
     flex-grow: 1;
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
     font-size: 1.1rem;
 
     .main-infos {
@@ -35,6 +36,9 @@
     .additional-infos {
       & > * + * {
         margin-top: 2em;
+        @media screen and (max-width: $medium-size) {
+          margin-top: 1em;
+        }
       }
     }
   }
