@@ -1,7 +1,15 @@
 import { displayUnit } from '../../utils'
-import { RECEIVE_USER_PARAMS, ADD_CITY } from '../const'
+import { RECEIVE_USER_PARAMS, UPDATE_PARAM, ADD_CITY, DELETE_CITY } from '../const'
 
-export function userParams (state={}, action) {
+const defaultParams = {
+  lang: '',
+  unit: '',
+  humidity: false,
+  pressure: false,
+  wind: false
+}
+
+export function userParams (state=defaultParams, action) {
   switch (action.type) {
     case RECEIVE_USER_PARAMS:
       const { userParams } = action.payload
@@ -12,10 +20,22 @@ export function userParams (state={}, action) {
         cities: userParams.cities,
         ...params
       }
+    case UPDATE_PARAM:{
+      return {
+        ...state,
+        [action.payload.param]: action.payload.value
+      }
+    }
     case ADD_CITY:
-      const newState = JSON.parse(JSON.stringify(state))
-      newState.cities.push(action.payload.city)
-      return newState
+      return {
+        ...state,
+        cities: [...state.cities, action.payload.city]
+      }
+    case DELETE_CITY:
+      return {
+        ...state,
+        cities: state.cities.filter(city => city.id !== action.payload.cityId )
+      }
     default:
       return state
   }

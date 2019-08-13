@@ -1,4 +1,4 @@
-import { RECEIVE_DETAILS_CITY, RECEIVE_CITIES, ADD_CITY, ADD_CITY_GROUP } from '../const'
+import { RECEIVE_DETAILS_CITY, RECEIVE_CITIES, ADD_CITY, ADD_CITY_GROUP, DELETE_CITY } from '../const'
 import apiWeather from '../../api/weather'
 import db from '../../api/db'
 
@@ -34,13 +34,23 @@ export function getDetailsCity(cityId, params) {
   }
 }
 
-export function addCity(cityId, params) {
+export function addCity(cityId, name, params) {
   return dispatch => {
-    db.addCity(cityId)
+    db.addCity(cityId, name)
       .then(({data: city}) => {
         console.log('ADD CITY')
         dispatch({ type: ADD_CITY, payload: { city } })
         dispatch(addCityGroup(cityId, params))
       })
+  }
+}
+
+export function deleteCity(cityId, openWeatherCityId) {
+  return dispatch => {
+    db.deleteCity(cityId)
+      .then(() => {
+        console.log('DELETE CITY')
+      })
+    dispatch({ type: DELETE_CITY, payload: { cityId, openWeatherCityId } })
   }
 }

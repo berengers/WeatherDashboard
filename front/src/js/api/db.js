@@ -1,4 +1,8 @@
 import axios from 'axios'
+import { replace } from 'connected-react-router'
+
+import { store } from '../../index'
+
 
 class DB {
   constructor() {
@@ -30,8 +34,8 @@ class DB {
     console.log('status ---->', status)
     
     if (status === 401 || status === 403) {
-      this._removeToken()
-      // TODO redirect to login
+      localStorage.removeItem('token')
+      store.dispatch(replace('/login'))
       console.log('authorization error ---->', error)
     } else {
       console.log('error ---->', error)
@@ -69,6 +73,10 @@ class DB {
         headers: this._headers()
       }
     )
+    .then((res) => {
+      this._removeToken()
+      return res
+    })
   }
 
 
@@ -84,15 +92,39 @@ class DB {
     .catch(this._status)
   }
 
+  updateParam(param, value) {
+    return axios.put(
+      this.url + '/userparams',
+      {
+        [param]: value
+      },
+      {
+        headers: this._headers()
+      }
+    )
+    .catch(this._status)
+  }
+
 
   // ------------ CITY -----------------
 
-  addCity(id) {
+  addCity(id, name) {
     return axios.post(
       this.url + '/city',
       {
-        openWeatherCityId: id
+        openWeatherCityId: id,
+        name
       },
+      {
+        headers: this._headers(),
+      }
+    )
+    .catch(this._status)
+  }
+
+  deleteCity(id) {
+    return axios.delete(
+      this.url + '/city/' + id,
       {
         headers: this._headers(),
       }

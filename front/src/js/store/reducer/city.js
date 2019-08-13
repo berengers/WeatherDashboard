@@ -1,4 +1,4 @@
-import { RECEIVE_DETAILS_CITY, RECEIVE_CITIES, ADD_CITY_GROUP } from '../const'
+import { RECEIVE_DETAILS_CITY, RECEIVE_CITIES, ADD_CITY_GROUP, DELETE_CITY } from '../const'
 
 const defaultCity = {
   loaded: false,
@@ -23,6 +23,8 @@ export function cities (state=[], action) {
       return action.payload.cities
     case ADD_CITY_GROUP:
       return [...state, action.payload.city.list[0]]
+    case DELETE_CITY:
+      return state.filter(city => city.id !== action.payload.openWeatherCityId)
     default:
       return state
   }

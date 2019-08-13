@@ -1,0 +1,29 @@
+.city-tag-a118a2a4 {
+  background: #e2e2e2;
+  height: 100%;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  padding: 0 .5rem;
+  position: relative;
+
+  .delete {
+    background: lighten($primary-color, 20%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform: translate(50%, -50%);
+    font-size: 0.8rem;
+    width: 1.2rem;
+    border-radius: 50%;
+    height: 1.2rem;
+    color: white;
+    cursor: pointer;
+    &:hover {
+      background-color: $primary-color;
+    }
+  }
+}

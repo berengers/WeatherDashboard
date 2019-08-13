@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 
 import { getOpenWeatherCities } from '../store/action/searchCity'
 import { addCity } from '../store/action/city'
@@ -20,8 +21,8 @@ const SearchCity = ({ dispatch, searchedCities, userParams }) => {
     }
   }
   
-  const citySelected = (id) => {
-    dispatch(addCity(id, userParams))
+  const citySelected = (id, name) => {
+    dispatch(addCity(id, name, userParams))
     dispatch({ type: REINIT_SEARCHED_CITIES })
     setText('')
   }
@@ -34,12 +35,17 @@ const SearchCity = ({ dispatch, searchedCities, userParams }) => {
       <div className="auto-complete">
         {
           searchedCities.map(city => (
-            <div key={city.id} onClick={() => citySelected(city.id)}>{city.name}</div>
+            <div key={city.id} onClick={() => citySelected(city.id, city.name)}>{city.name}</div>
           ))
         }
       </div>
     </div>
   )
+}
+
+SearchCity.propTypes = {
+  searchedCities: PropTypes.array.isRequired,
+  userParams: PropTypes.object.isRequired
 }
 
 const mapStateToProps = ({ searchedCities, userParams }) => ({ searchedCities, userParams })

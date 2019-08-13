@@ -1,5 +1,5 @@
 import db from '../../api/db'
-import { RECEIVE_USER_PARAMS } from '../const'
+import { RECEIVE_USER_PARAMS, UPDATE_PARAM } from '../const'
 import { getDetailsCity, getCities } from './city'
 
 
@@ -15,6 +15,16 @@ export function getUserParams() {
           dispatch(getDetailsCity(citiesId[0], params))
           dispatch(getCities(citiesId, params))
         })
+    }
+  }
+}
+
+export function updateParam(param, value) {
+  return dispatch => {
+    if (db.isAuthenticated()) {
+      db.updateParam(param, value)
+        .then(() => { })
+      dispatch({ type: UPDATE_PARAM, payload: { param, value } })
     }
   }
 }

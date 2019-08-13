@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 
 import { convertSpeed } from '../utils'
 
@@ -44,6 +45,12 @@ const AddtionalInfo = ({ type, userParams, city }) => {
       </div>
     </div>
   )
+}
+
+AddtionalInfo.propTypes = {
+  type: PropTypes.string.isRequired,
+  userParams: PropTypes.object.isRequired,
+  city: PropTypes.object.isRequired
 }
 
 const mapStateToProps = ({ userParams, detailsCity }) => ({ userParams, city: detailsCity })

@@ -31,6 +31,17 @@ input:not([type=file]), textarea {
   border: 0;
 }
 
+select {
+  padding: 0.3rem;
+  font-size: 1rem;
+  border: 0;
+  border-radius: 3px;
+  font-weight: 600;
+  color: #3a3a3a;
+  background: #e2e2e2;
+  border: 1px solid #b9b9b9;
+}
+
 h1, h2, h3, h4, h5, h6 {
   margin: 1rem 0;
   font-weight: normal;
@@ -56,6 +67,7 @@ body {
   font-size: 15px;
   font-family: 'Rubik';
   color: white;
+  background-color: whitesmoke;
 }
 
 /* width */
@@ -121,8 +133,11 @@ body {
 
 @import "login";
 @import "dashboard";
+@import "settings";
+@import "cityTag";
 @import "navbar";
 @import "searchCity";
 @import "widgetCity";
 @import "detailView";
 @import "additionalInfo";
+@import "inputToggle";

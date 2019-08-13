@@ -1,19 +1,15 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 
 import Navbar from '../component/Navbar'
 import DetailView from '../component/DetailView'
-import { getUserParams } from '../store/action/userParams'
 
 class Dashboard extends React.Component {
 
   constructor(props) {
     super(props)
     this.state = { visibilityMenu: false }
-  }
-
-  componentDidMount() {
-    this.props.dispatch(getUserParams())
   }
 
   displayMenu = () => {
@@ -39,6 +35,11 @@ class Dashboard extends React.Component {
       </div>
     )
   }
+}
+
+Dashboard.propTypes = {
+  detailsCity: PropTypes.object.isRequired,
+  cities: PropTypes.array.isRequired,
 }
 
 const mapStateToProps = ({ detailsCity, cities }) => ({ detailsCity, cities })

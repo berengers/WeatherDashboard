@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 
 import AdditionalInfo from '../component/AddtionalInfo'
 
@@ -29,16 +30,14 @@ const DetailView = ({ userParams, city, cities }) => {
           }
         </div>
       </div>
-      <div className="chronological">
-        <div>Lundi</div>
-        <div>Lundi</div>
-        <div>Lundi</div>
-        <div>Lundi</div>
-        <div>Lundi</div>
-        <div>Lundi</div>
-      </div>
     </div>
   )
+}
+
+DetailView.propTypes = {
+  userParams: PropTypes.object.isRequired,
+  city: PropTypes.object.isRequired,
+  cities: PropTypes.array.isRequired
 }
 
 const mapStateToProps = ({ userParams, detailsCity, cities }) => ({ userParams, city: detailsCity, cities })

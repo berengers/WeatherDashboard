@@ -3,13 +3,13 @@ import { Switch, Route } from 'react-router-dom'
 
 import PrivateRoute from './PrivateRoute'
 import Login from '../view/Login'
-import Dashboard from '../view/Dashboard'
+import UserSide from './UserSide'
 
 const App = () => {
   return (
     <Switch>
       <Route path="/login" component={Login} />
-      <PrivateRoute path="/" component={Dashboard} />
+      <PrivateRoute component={UserSide} />
     </Switch>
   )
 }
