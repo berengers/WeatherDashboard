@@ -9,7 +9,7 @@ const InputToggle = ({ value, cb, params }) => {
 
   return (
     <div className="input-toggle-6e7e7eeb">
-      <div className={`toggle ${!value && "disable"}`} onClick={toggle}></div>
+      <div className={`toggle ${!value ? "disable" : ""}`} onClick={toggle}></div>
     </div>
   )
 }

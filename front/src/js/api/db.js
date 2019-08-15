@@ -49,7 +49,6 @@ class DB {
     if (this._getToken()) {
       return true
     } else {
-      // router.replace('/login')
       return false
     }
   }

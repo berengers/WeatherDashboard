@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
-import AdditionalInfo from '../component/AddtionalInfo'
+import AdditionalInfo from './AdditionalInfo'
 
 const DetailView = ({ userParams, city, cities }) => {
   const cityFromGroup = cities.find(el => el.id === city.id)

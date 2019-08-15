@@ -18,7 +18,8 @@ class Login extends React.Component {
   connect = () => {
     const { dispatch } = this.props
     const { email, password } = this
-    dispatch(login(email, password))
+    if(email.trim() && password.trim())
+      dispatch(login(email, password))
   }
   
   render () {

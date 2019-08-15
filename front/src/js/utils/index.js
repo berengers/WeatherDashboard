@@ -14,8 +14,7 @@ export function displayUnit(unit) {
 
 export function convertSpeed(speed, unit='metric') {
   if (unit === 'metric')
-    return `${(speed * 3.6).toFixed(1)}km/h`
+    return `${speed * 3.6}km/h`
   else if (unit === 'imperial')
-    return
-      `${speed}miles/h`
+    return `${speed}miles/h`
 }

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 import { convertSpeed } from '../utils'
 
-const AddtionalInfo = ({ type, userParams, city }) => {
+const AdditionalInfo = ({ type, userParams, city }) => {
   let iconClass
   let name
   let value
@@ -13,7 +13,7 @@ const AddtionalInfo = ({ type, userParams, city }) => {
     switch (type) {
       case 'wind':
         iconClass = `wi-wind towards-${city.wind.deg}-deg`
-        name = userParams.lang === 'fr' ? 'Vitesse du Vent' : 'Wind Speed'
+        name = userParams.lang === 'fr' ? 'Vitesse du vent' : 'Wind speed'
         value = convertSpeed(city.wind.speed, userParams.unit)
         break
 
@@ -25,7 +25,7 @@ const AddtionalInfo = ({ type, userParams, city }) => {
       
       case 'pressure':
           iconClass = `wi-owm-904`
-          name = userParams.lang === 'fr' ? 'Préssion atmosphérique' : 'Air Pressure'
+          name = userParams.lang === 'fr' ? 'Pression atmosphérique' : 'Air Pressure'
           value = `${city.main.pressure} hPa`
           break
 
@@ -47,7 +47,7 @@ const AddtionalInfo = ({ type, userParams, city }) => {
   )
 }
 
-AddtionalInfo.propTypes = {
+AdditionalInfo.propTypes = {
   type: PropTypes.string.isRequired,
   userParams: PropTypes.object.isRequired,
   city: PropTypes.object.isRequired
@@ -55,4 +55,4 @@ AddtionalInfo.propTypes = {
 
 const mapStateToProps = ({ userParams, detailsCity }) => ({ userParams, city: detailsCity })
 
-export default connect(mapStateToProps)(AddtionalInfo)
+export default connect(mapStateToProps)(AdditionalInfo)
