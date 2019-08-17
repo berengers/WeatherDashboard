@@ -99,7 +99,7 @@ class Settings extends React.Component {
             <select name="unit" value={unit} onChange={this.handleChange}>
               <option value="metric">Metric</option>
               <option value="imperial">Imperial</option>
-              <option value="">Kelvin</option>
+              <option value="kelvin">Kelvin</option>
             </select>
           </div>
 
