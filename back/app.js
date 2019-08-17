@@ -25,3 +25,5 @@ require('./api/user')(app, '/api/user')
 require('./api/userParams')(app, '/api/userparams')
 require('./api/city')(app, '/api/city')
 require('./api/openWeatherCity')(app, '/api/owcities')
+
+module.exports = app

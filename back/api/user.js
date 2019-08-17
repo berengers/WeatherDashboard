@@ -28,6 +28,7 @@ function getUser(req, res) {
 }
 
 function newUser(req, res) {
+  console.log('111111111111111 ---->', 111111111111111)
   const { email, password } = req.body
 
   User.create({ email, password })

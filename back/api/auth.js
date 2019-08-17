@@ -43,6 +43,7 @@ function authenticate(req, res, next) {
   })
 }
 
+module.exports = login
 
 module.exports = (app, prefix) => {
   app.use(authenticate)
