@@ -1,7 +1,8 @@
 import { displayUnit } from '../../utils'
-import { RECEIVE_USER_PARAMS, UPDATE_PARAM, ADD_CITY, DELETE_CITY } from '../const'
+import { RECEIVE_USER_PARAMS, UPDATE_PARAM, ADD_CITY, DELETE_CITY, LOGIN_ERROR } from '../const'
 
 const defaultParams = {
+  errorLogin: false,
   lang: '',
   unit: '',
   humidity: false,
@@ -11,10 +12,13 @@ const defaultParams = {
 
 export function userParams (state=defaultParams, action) {
   switch (action.type) {
+    case LOGIN_ERROR:
+      return { ...state, errorLogin: true }
     case RECEIVE_USER_PARAMS:
       const { userParams } = action.payload
       const {createdAt, updatedAt, id, userId, ...params} = userParams.userParam
       return {
+        errorLogin: false,
         email: userParams.email,
         displayUnit: displayUnit(params.unit),
         cities: userParams.cities,

@@ -9,6 +9,13 @@
   font-size: 1rem;
   color: white;
 
+  .error-message {
+    background: #d44b4b;
+    color: white;
+    padding: 0.1em;
+    margin: 0.3em 0;
+  }
+
   .container {
     background: #38393aa1;
     width: 400px;
@@ -16,9 +23,12 @@
     padding: 2% 3%;
     border-radius: 10px;
 
-    input {
-      width: 100%;
-      font-size: 1.1em;
+    .input-container {
+      input {
+        width: 100%;
+        font-size: 1em;
+      }
+
       & + * {
         margin-top: 1em;
       }

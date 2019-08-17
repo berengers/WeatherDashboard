@@ -1,4 +1,7 @@
 
+// ------------ LOGIN
+export const LOGIN_ERROR = "LOGIN_ERROR"
+
 // ------------ CITIES
 export const RECEIVE_DETAILS_CITY = "RECEIVE_DETAILS_CITY"
 export const RECEIVE_CITIES = "RECEIVE_CITIES"

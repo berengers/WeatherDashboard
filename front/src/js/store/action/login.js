@@ -1,5 +1,6 @@
 import { push, replace } from 'connected-react-router'
 
+import { LOGIN_ERROR } from '../const'
 import db from '../../api/db'
 
 export function login (email, password) {
@@ -7,6 +8,9 @@ export function login (email, password) {
     db.login(email, password)
       .then(() => {
         dispatch(push('/'))
+      })
+      .catch(() => {
+        dispatch({ type: LOGIN_ERROR })
       })
   }
 }
