@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 import { getDetailsCity } from '../store/action/city'
 
-const WidgetCity = ({ dispatch, index, userParams, cities }) => {
+const WidgetCity = ({ dispatch, index, userParams, cities, detailsCity }) => {
   const city = cities[index]
   const { name, main } = city
   const weather = city.weather[0]
@@ -14,8 +14,12 @@ const WidgetCity = ({ dispatch, index, userParams, cities }) => {
     dispatch(getDetailsCity(city.id, userParams))
   }
 
+  const activeClass = () => {
+    return detailsCity.id === city.id ? 'active' : ''
+  }
+
   return (
-    <div className="widget-city-759bdd23" onClick={setCurrentCity}>
+    <div className={`widget-city-759bdd23 ${activeClass()}`} onClick={setCurrentCity}>
       <div className="city-name">{userCity.name ? userCity.name : name}</div>
       <div className="infos">
         <span className="temp">{main.temp.toFixed(1)}{userParams.displayUnit}</span>
@@ -31,6 +35,6 @@ WidgetCity.propTypes = {
   cities: PropTypes.array.isRequired
 }
 
-const mapStateToProps = ({ userParams, cities }) => ({ userParams, cities })
+const mapStateToProps = ({ userParams, cities, detailsCity }) => ({ userParams, cities, detailsCity })
 
 export default connect(mapStateToProps)(WidgetCity)
