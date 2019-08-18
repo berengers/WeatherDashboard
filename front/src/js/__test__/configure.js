@@ -5,7 +5,6 @@ import { render, cleanup } from '@testing-library/react'
 import { createMemoryHistory } from 'history'
 import { Router } from 'react-router-dom'
 
-jest.mock('../api/db', () => {})
 
 afterEach(cleanup)
 

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 import { deleteCity } from '../store/action/city'
 
-const Citytag = ({ dispatch, city }) => {
+export const CityTag = ({ dispatch, city }) => {
 
   const removeCity = () => {
     dispatch(deleteCity(city.id, city.openWeatherCityId))
@@ -21,8 +21,8 @@ const Citytag = ({ dispatch, city }) => {
   )
 }
 
-Citytag.propTypes = {
+CityTag.propTypes = {
   city: PropTypes.object.isRequired
 }
 
-export default connect()(Citytag)
+export default connect()(CityTag)
