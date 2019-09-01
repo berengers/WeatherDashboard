@@ -4,8 +4,8 @@ import { createStore, applyMiddleware, compose } from 'redux'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 import { HashRouter } from 'react-router-dom'
-import { createHashHistory } from 'history'
 import { routerMiddleware } from 'connected-react-router'
+import { history } from './js/store/reducer'
 
 import './css/index.scss'
 import './css/weather-icons.min.css'
@@ -15,10 +15,8 @@ import rootReducers from './js/store/reducer'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const history = createHashHistory()
-
 export const store = createStore(
-  rootReducers(history),
+  rootReducers,
   composeEnhancers(
     applyMiddleware(
       thunk,

@@ -1,6 +1,7 @@
 
 // ------------ LOGIN
 export const LOGIN_ERROR = "LOGIN_ERROR"
+export const LOGOUT = "LOGOUT"
 
 // ------------ CITIES
 export const RECEIVE_DETAILS_CITY = "RECEIVE_DETAILS_CITY"
